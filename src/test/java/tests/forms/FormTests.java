@@ -27,7 +27,7 @@ public class FormTests extends BaseTest {
         // Заполняем только необходимые поля
         $("#firstName").setValue("John");
         $("#lastName").setValue("Cena");
-        $("input[value=Male]").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("1234567890");
 
         // Кликаем по кнопке "Submit"
@@ -46,7 +46,7 @@ public class FormTests extends BaseTest {
         $("#firstName").setValue("Hulk");
         $("#lastName").setValue("Hogan");
         $("#userEmail").setValue("hulkhogan@wwe.com");
-        $("input[value=Male]").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("1234567890");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").$(byText("1953")).click();
@@ -54,7 +54,7 @@ public class FormTests extends BaseTest {
         $(".react-datepicker__month").$(byText("11")).click();
         $("#subjectsInput").setValue("English").pressEnter();
         $("#hobbies-checkbox-1").click();
-        $("#uploadPicture").uploadFile(new File("src/test/java/tests/resources/image/hogan.jpg"));
+        $("#uploadPicture").uploadFromClasspath("hogan.jpg");
         $("#currentAddress").setValue("Клируотер, Флорида, США (пригород Тампы)");
         $("#state").click();
         $("#state").$(byText("NCR")).click();
