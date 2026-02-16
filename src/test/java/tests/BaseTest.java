@@ -12,8 +12,9 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.browserVersion = "144";
         Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://app.qa.guru";
-//        Configuration.timeout = 10000;
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
+
     }
 
     @AfterAll

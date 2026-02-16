@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tests.BaseTest;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,70 +15,82 @@ public class FormTests extends BaseTest {
 
     @BeforeEach
     void openRightURLPath() {
-        open("/automation-practice-form/");
+        // отключил прямой переход, т.к. выдаёт ошибку
+//        open("/automation-practice-form");
+        open("/");
+        $(byText("Forms")).click();
+        $(byText("Practice Form")).click();
     }
 
     @Test
     void successOnlyRequiredFieldsTest() {
         // Заполняем только необходимые поля
-        $("[data-testid=ClearIcon]").click();
-        $("input[data-testid='firstName']").setValue("John");
-        $("input[data-testid='lastName']").setValue("Cena");
-        $("input[data-testid='email']").setValue("johncena@wwe.com");
-        $("input[data-testid='phone']").setValue("8001234567");
-        $("input[value='Male']").click();
+        $("#firstName").setValue("John");
+        $("#lastName").setValue("Cena");
+        $("input[value=Male]").click();
+        $("#userNumber").setValue("1234567890");
 
         // Кликаем по кнопке "Submit"
-        $("button[type='submit']").scrollTo().click();
+        $("#submit").click();
 
         // Проверяем результат
-        $(".MuiTypography-h4.css-rq8zac").scrollTo().shouldHave(text("Thank you for submitting the form"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='firstName']]/div[2]//p")
-                .shouldHave(text("John"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='lastName']]/div[2]//p")
-                .shouldHave(text("Cena"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='email']]/div[2]//p")
-                .shouldHave(text("johncena@wwe.com"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='gender']]/div[2]//p")
-                .shouldHave(text("Male"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='phone']]/div[2]//p")
-                .shouldHave(text("+18001234567"));
+        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
+        $(".modal-body").$(byText("Student Name")).parent().shouldHave(text("John " + "Cena"));
+        $(".modal-body").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".modal-body").$(byText("Mobile")).parent().shouldHave(text("1234567890"));
     }
 
     @Test
     void successAllFieldTest() {
-        // Заполняем все поля
-        $("[data-testid=ClearIcon]").click();
-        $("input[data-testid='firstName']").setValue("John");
-        $("input[data-testid='lastName']").setValue("Cena");
-        $("input[data-testid='email']").setValue("johncena@wwe.com");
-        $("input[data-testid='phone']").setValue("8001234567");
-        $x("//label[normalize-space()='Language']/following::div[@role='combobox'][1]").click();
-        $x("//li[@role='option' and @data-value='English']").click();
-        $("input[data-testid='dateOfBirth']").click();
-        $("input[data-testid='dateOfBirth']").setValue("01021900");
-        $("input[value='Male']").click();
+        // Заполняем только необходимые поля
+        $("#firstName").setValue("Hulk");
+        $("#lastName").setValue("Hogan");
+        $("#userEmail").setValue("hulkhogan@wwe.com");
+        $("input[value=Male]").click();
+        $("#userNumber").setValue("1234567890");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__year-select").$(byText("1953")).click();
+        $(".react-datepicker__month-select").$(byText("August")).click();
+        $(".react-datepicker__month").$(byText("11")).click();
+        $("#subjectsInput").setValue("English").pressEnter();
+        $("#hobbies-checkbox-1").click();
+        $("#uploadPicture").uploadFile(new File("src/test/java/tests/resources/image/hogan.jpg"));
+        $("#currentAddress").setValue("Клируотер, Флорида, США (пригород Тампы)");
+        $("#state").click();
+        $("#state").$(byText("NCR")).click();
+        $("#city").click();
+        $("#city").$(byText("Delhi")).click();
 
         // Кликаем по кнопке "Submit"
-        $("button[type='submit']").scrollTo().click();
+        $("#submit").click();
 
         // Проверяем результат
-        $(".MuiTypography-h4.css-rq8zac").scrollTo().shouldHave(text("Thank you for submitting the form"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='firstName']]/div[2]//p")
-                .shouldHave(text("John"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='lastName']]/div[2]//p")
-                .shouldHave(text("Cena"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='email']]/div[2]//p")
-                .shouldHave(text("johncena@wwe.com"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='gender']]/div[2]//p")
-                .shouldHave(text("Male"));
-        $x("//div[contains(@class,'css-1gya3ze')][.//p[normalize-space()='phone']]/div[2]//p")
-                .shouldHave(text("+18001234567"));
+        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
+        $(".modal-body").$(byText("Student Name")).parent().shouldHave(text("Hulk " + "Hogan"));
+        $(".modal-body").$(byText("Gender")).parent().shouldHave(text("Male"));
+        $(".modal-body").$(byText("Mobile")).parent().shouldHave(text("1234567890"));
+        $(".modal-body").$(byText("Date of Birth")).parent().shouldHave(text("11 August,1953"));
+        $(".modal-body").$(byText("Subjects")).parent().shouldHave(text("English"));
+        $(".modal-body").$(byText("Hobbies")).parent().shouldHave(text("Sports"));
+        $(".modal-body").$(byText("Picture")).parent().shouldHave(text("hogan.jpg"));
+        $(".modal-body").$(byText("Address")).parent().shouldHave(text("Клируотер, Флорида, США (пригород Тампы)"));
+        $(".modal-body").$(byText("State and City")).parent().shouldHave(text("NCR Delhi"));
+
+
     }
 
     @Test
-    void errorFieeldTest() {
+    void errorFieldTest() {
+        // сразу кликнем по кнопке Submit
+        $("#submit").click();
 
+        // Проверяем результат
+        $(".modal-header").shouldNot(visible);
+    }
+
+    @Test
+    void aFirstRunTest() {
+        $("#banner-image").shouldHave(visible);
     }
 
 }
