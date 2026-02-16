@@ -14,6 +14,7 @@ public class BaseTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.pageLoadTimeout = 35000; // увеличил для "прогрева" при первом старте, из-за возможных нюансов с ВПН
 
     }
 

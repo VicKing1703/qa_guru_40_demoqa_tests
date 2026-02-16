@@ -67,6 +67,7 @@ public class FormTests extends BaseTest {
         // Проверяем результат
         $(".modal-header").shouldHave(text("Thanks for submitting the form"));
         $(".modal-body").$(byText("Student Name")).parent().shouldHave(text("Hulk " + "Hogan"));
+        $(".modal-body").$(byText("Student Email")).parent().shouldHave(text("hulkhogan@wwe.com"));
         $(".modal-body").$(byText("Gender")).parent().shouldHave(text("Male"));
         $(".modal-body").$(byText("Mobile")).parent().shouldHave(text("1234567890"));
         $(".modal-body").$(byText("Date of Birth")).parent().shouldHave(text("11 August,1953"));
@@ -81,16 +82,11 @@ public class FormTests extends BaseTest {
 
     @Test
     void errorFieldTest() {
-        // сразу кликнем по кнопке Submit
+        // без заполнения полей сразу кликнем по кнопке Submit
         $("#submit").click();
 
         // Проверяем результат
         $(".modal-header").shouldNot(visible);
-    }
-
-    @Test
-    void aFirstRunTest() {
-        $("#banner-image").shouldHave(visible);
     }
 
 }
