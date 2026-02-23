@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
+
     @BeforeAll
     static void setUp() {
         Configuration.browser = "chrome";
@@ -15,7 +16,6 @@ public class BaseTest {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 40000; // увеличил для "прогрева" при первом старте, из-за возможных нюансов с ВПН
-
     }
 
     @AfterAll
