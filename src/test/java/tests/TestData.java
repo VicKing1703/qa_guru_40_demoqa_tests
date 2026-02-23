@@ -2,6 +2,7 @@ package tests;
 
 public class TestData {
 
+    public static String fullName = "Hulk Hogan";
     public static String firstName = "Hulk";
     public static String lastName = "Hogan";
     public static String userEmail = "hulkhogan@wwe.com";
@@ -13,6 +14,7 @@ public class TestData {
     public static String subjects = "English";
     public static String hobbies = "Sports";
     public static String currentAddress = "Клируотер, Флорида, США (пригород Тампы)";
+    public static String permanentAddress = "Огаста, Джорджия, США";
     public static String state = "NCR";
     public static String city = "Delhi";
     public static String imageName = "hogan.jpg";
