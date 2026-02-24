@@ -23,8 +23,4 @@ public class ResultModalComponent {
         return this;
     }
 
-    public ResultModalComponent shouldHaveValues(Map<String, String> values) {
-        values.forEach(this::shouldHaveValue);
-        return this;
-    }
 }

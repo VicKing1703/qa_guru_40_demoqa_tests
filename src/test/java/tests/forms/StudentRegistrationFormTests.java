@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
 
-import java.util.Map;
-
 import static tests.TestData.*;
 
 public class StudentRegistrationFormTests extends BaseTest {
@@ -23,11 +21,9 @@ public class StudentRegistrationFormTests extends BaseTest {
                 .clickSubmitButton()
                 .resultRegistrationModal()
                 .shouldAppear()
-                .shouldHaveValues(Map.of(
-                "Student Name", firstName + " " + lastName,
-                "Gender", sex,
-                "Mobile", userNumber
-        ));
+                .shouldHaveValue("Student Name", firstName + " " + lastName)
+                .shouldHaveValue("Gender", sex)
+                .shouldHaveValue("Mobile", userNumber);
 
     }
 
@@ -48,18 +44,16 @@ public class StudentRegistrationFormTests extends BaseTest {
                 .clickSubmitButton()
                 .resultRegistrationModal()
                 .shouldAppear()
-                .shouldHaveValues(Map.of(
-                        "Student Name", firstName + " " + lastName,
-                        "Student Email", userEmail,
-                        "Gender", sex,
-                        "Mobile", userNumber,
-                        "Date of Birth", dayBirth + " " + monthBirth +"," + yearBirth,
-                        "Subjects", subjects,
-                        "Hobbies", hobbies,
-                        "Picture", imageName,
-                        "Address", currentAddress,
-                        "State and City", state + " " + city
-                ));
+                .shouldHaveValue("Student Name", firstName + " " + lastName)
+                .shouldHaveValue("Student Email", userEmail)
+                .shouldHaveValue("Gender", sex)
+                .shouldHaveValue("Mobile", userNumber)
+                .shouldHaveValue("Date of Birth", dayBirth + " " + monthBirth +"," + yearBirth)
+                .shouldHaveValue("Subjects", subjects)
+                .shouldHaveValue("Hobbies", hobbies)
+                .shouldHaveValue("Picture", imageName)
+                .shouldHaveValue("Address", currentAddress)
+                .shouldHaveValue("State and City", state + " " + city);
 
     }
 
