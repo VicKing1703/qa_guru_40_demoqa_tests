@@ -6,8 +6,6 @@ import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
 import tests.TestData;
 
-import static tests.TestData.*;
-
 public class StudentRegistrationFormTests extends BaseTest {
     TestData testData = new TestData();
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
