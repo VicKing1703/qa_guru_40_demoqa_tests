@@ -1,14 +1,52 @@
 package tests.forms;
 
+import net.datafaker.Faker;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
+import utils.RandomUtils;
 
-import static tests.TestData.*;
+import static tests.TestData.imageName;
+import static utils.RandomUtils.*;
 
 public class StudentRegistrationFormTests extends BaseTest {
 
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
+    Faker faker = new Faker();
+
+    String firstName;
+    String lastName;
+    String sex;
+    String userNumber;
+    String userEmail;
+    String dayBirth;
+    String monthBirth;
+    String yearBirth;
+    String subjects;
+    String hobbies;
+    String currentAddress;
+    String state;
+    String city;
+
+
+    @BeforeEach
+    void prepareRandomData() {
+        firstName = getRandomString(5);
+        lastName = getRandomString(7);
+        sex = getRandomGender();
+        userEmail = getRandomEmail(5);
+        userNumber = faker.phoneNumber().subscriberNumber(10);
+        dayBirth = String.valueOf(RandomUtils.getRandomInt(1, 30));
+        monthBirth = getRandomMonthOfBirth();
+        yearBirth = String.valueOf(getRandomInt(1900, 2026));
+        subjects = getRandomSubject();
+        hobbies = getRandomHobbie();
+        currentAddress = getRandomString(100);
+        state = getRandomState();
+        city = getRandomCity(state);
+
+    }
 
     @Test
     void successOnlyRequiredFieldsTest() {
