@@ -129,13 +129,10 @@ public class StudentRegistrationFormPage {
     }
 
     public StudentRegistrationFormPage validErrorGender() {
-
         // radio кружки
         genderRadios.forEach(validation::shouldHaveRedBorder);
-
         // подписи Male/Female/Other
         genderLabels.forEach(validation::shouldHaveRedText);
-
         return this;
     }
 
