@@ -1,59 +1,63 @@
 package tests.forms;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
-
-import static tests.TestData.*;
+import tests.TestData;
 
 public class StudentRegistrationFormTests extends BaseTest {
-
+    TestData testData = new TestData();
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
+
+    @BeforeEach
+    void newTestData() {
+    }
 
     @Test
     void successOnlyRequiredFieldsTest() {
 
         studentRegistrationFormPage.openStudentRegistrationFormPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .setGender(sex)
-                .typePhoneNumber(userNumber)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .setGender(testData.sex)
+                .typePhoneNumber(testData.userNumber)
                 .clickSubmitButton()
                 .resultRegistrationModal()
                 .shouldAppear()
-                .shouldHaveValue("Student Name", firstName + " " + lastName)
-                .shouldHaveValue("Gender", sex)
-                .shouldHaveValue("Mobile", userNumber);
+                .shouldHaveValue("Student Name", testData.firstName + " " + testData.lastName)
+                .shouldHaveValue("Gender", testData.sex)
+                .shouldHaveValue("Mobile", testData.userNumber);
 
     }
 
     @Test
     void successAllFieldTest() {
         studentRegistrationFormPage.openStudentRegistrationFormPage()
-                .typeFirstName(firstName)
-                .typeLastName(lastName)
-                .typeUserEmail(userEmail)
-                .setGender(sex)
-                .typePhoneNumber(userNumber)
-                .setDateOfBirth(dayBirth, monthBirth, yearBirth)
-                .typeSubject(subjects)
-                .setHobbies(hobbies)
-                .uploadPicture(imageName)
-                .typeCurrentAddress(currentAddress)
-                .setStateAndCity(state, city)
+                .typeFirstName(testData.firstName)
+                .typeLastName(testData.lastName)
+                .typeUserEmail(testData.userEmail)
+                .setGender(testData.sex)
+                .typePhoneNumber(testData.userNumber)
+                .setDateOfBirth(testData.dayBirth, testData.monthBirth, testData.yearBirth)
+                .typeSubject(testData.subjects)
+                .setHobbies(testData.hobbies)
+                .uploadPicture(testData.imageName)
+                .typeCurrentAddress(testData.currentAddress)
+                .setStateAndCity(testData.state, testData.city)
                 .clickSubmitButton()
                 .resultRegistrationModal()
                 .shouldAppear()
-                .shouldHaveValue("Student Name", firstName + " " + lastName)
-                .shouldHaveValue("Student Email", userEmail)
-                .shouldHaveValue("Gender", sex)
-                .shouldHaveValue("Mobile", userNumber)
-                .shouldHaveValue("Date of Birth", dayBirth + " " + monthBirth +"," + yearBirth)
-                .shouldHaveValue("Subjects", subjects)
-                .shouldHaveValue("Hobbies", hobbies)
-                .shouldHaveValue("Picture", imageName)
-                .shouldHaveValue("Address", currentAddress)
-                .shouldHaveValue("State and City", state + " " + city);
+                .shouldHaveValue("Student Name", testData.firstName + " " + testData.lastName)
+                .shouldHaveValue("Student Email", testData.userEmail)
+                .shouldHaveValue("Gender", testData.sex)
+                .shouldHaveValue("Mobile", testData.userNumber)
+                .shouldHaveValue("Date of Birth", testData.dayBirth + " " + testData.monthBirth +"," + testData.yearBirth)
+                .shouldHaveValue("Subjects", testData.subjects)
+                .shouldHaveValue("Hobbies", testData.hobbies)
+                .shouldHaveValue("Picture", testData.imageName)
+                .shouldHaveValue("Address", testData.currentAddress)
+                .shouldHaveValue("State and City", testData.state + " " + testData.city);
 
     }
 
