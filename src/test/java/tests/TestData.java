@@ -2,25 +2,24 @@ package tests;
 
 import net.datafaker.Faker;
 
-import static utils.RandomUtils.*;
-
 public class TestData {
      Faker faker = new Faker();
 
 
-    public String fullName = faker.name().fullName(),
-            firstName = faker.funnyName().name(),
-            lastName = getRandomString(5),
+    public String firstName = faker.funnyName().name(),
+            lastName = faker.name().lastName(),
             userEmail = faker.internet().emailAddress(),
             sex = faker.options().option("Male", "Female", "Other"),
             userNumber = faker.phoneNumber().subscriberNumber(10),
             yearBirth = String.valueOf(faker.number().numberBetween(1900,2100)),
-            monthBirth = getRandomMonthOfBirth(),
+            monthBirth = faker.options().option("January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"),
             dayBirth = String.valueOf(faker.number().numberBetween(1,28)),
-            subjects = getRandomSubject(),
+            subjects = faker.options().option("Hindi", "English", "Maths", "Physics", "Chemistry", "Biology",
+                    "Computer Science", "Commerce", "Accounting", "Economics", "Arts",
+                    "Social Studies", "History", "Civics"),
             hobbies = faker.options().option("Sports", "Reading", "Music"),
             currentAddress = faker.address().fullAddress(),
-            permanentAddress = getRandomString(50),
             state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan"),
             city = selectCity(state),
             imageName = faker.options().option("hogan.jpg", "cena.jpg");
