@@ -22,7 +22,7 @@ public class TestData {
             currentAddress = faker.address().fullAddress(),
             state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan"),
             city = selectCity(state),
-            imageName = faker.options().option("hogan.jpg", "cena.jpg");
+            imagePath = faker.options().option("images/hogan.jpg", "images/cena.jpg");
 
     public  String selectCity(String state) {
         return switch (state) {
