@@ -11,6 +11,7 @@ import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
 import tests.TestData;
 
+@DisplayName("Тесты для страницы 'Student Registration Form'")
 public class StudentRegistrationFormTests extends BaseTest {
     TestData testData = new TestData();
     StudentRegistrationFormPage studentRegistrationFormPage = new StudentRegistrationFormPage();
