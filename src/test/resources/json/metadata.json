@@ -1,0 +1,19 @@
+{
+	"source": "buddy4study.com",
+	"scraped_date": "2026-02-05 10:22:52",
+	"total_scholarships": 227,
+	"method": "Selenium WebDriver (JavaScript rendered content)",
+	"categories": {
+		"Education Loan": 36,
+		"Fee Waiver": 107,
+		"Fellowship": 38,
+		"Internship": 19,
+		"Study Abroad": 11,
+		"General": 16
+	},
+	"statuses": {
+		"Active": 1,
+		"Closed": 126,
+		"Featured": 100
+	}
+}
