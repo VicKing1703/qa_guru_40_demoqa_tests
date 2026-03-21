@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.StudentRegistrationFormPage;
 import tests.BaseTest;
-import tests.TestData;
 
 @DisplayName("Тесты для страницы 'Student Registration Form'")
 public class StudentRegistrationFormTests extends BaseTest {
@@ -40,7 +39,7 @@ public class StudentRegistrationFormTests extends BaseTest {
     @CsvFileSource(resources = "/csv/namesForTests.csv")
     @Tag("REGRESS")
     @DisplayName("Проверка заполнения и отправки только обязательных полей c именами на разных языках")
-    void successOnlyRequiredFieldsSubmittingTestWithDifferentLanguages(String firstName, String lastName) {
+    void successOnlyRequiredFieldsSubmittingTestWithDifferentLanguagesTest(String firstName, String lastName) {
 
         studentRegistrationFormPage.openStudentRegistrationFormPage()
                 .typeFirstName(firstName)

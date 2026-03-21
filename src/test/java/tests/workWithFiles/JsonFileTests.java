@@ -14,7 +14,7 @@ public class JsonFileTests {
 
     @Test
     @DisplayName("Проверка значений json файла")
-    public void testJsonFile() throws Exception {
+    public void jsonFileTest() throws Exception {
         try(InputStream inputStream = cl.getResourceAsStream("json/metadata.json")) {
             Metadata metadata = mapper.readValue(inputStream, Metadata.class);
 
