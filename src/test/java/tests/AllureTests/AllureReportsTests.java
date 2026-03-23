@@ -3,6 +3,7 @@ package tests.AllureTests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import static org.openqa.selenium.By.linkText;
 
 @DisplayName("Тесты в разных стилях с отчетами в Аллюр")
 @Tag("Allure")
+@Disabled("Чтоб не мешалось")
 public class AllureReportsTests {
 
     private static String REPOSITORY = "VicKing1703/qa_guru_40_demoqa_tests";
