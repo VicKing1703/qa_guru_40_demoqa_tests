@@ -31,13 +31,14 @@ public class BaseTest {
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 40000; // увеличил для "прогрева" при первом старте, из-за возможных нюансов с ВПН
 
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
     }
 
     @AfterEach
@@ -45,7 +46,7 @@ public class BaseTest {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.getVideoUrl();
+        Attach.addVideo();
     }
 
     @AfterAll
