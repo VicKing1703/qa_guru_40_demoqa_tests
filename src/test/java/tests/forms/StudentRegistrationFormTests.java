@@ -21,7 +21,8 @@ public class StudentRegistrationFormTests extends BaseTest {
     @DisplayName("Проверка заполнения и отправки только обязательных полей")
     void successOnlyRequiredFieldsSubmittingTest(String sex) {
 
-        studentRegistrationFormPage.openStudentRegistrationFormPage()
+        studentRegistrationFormPage
+                .openStudentRegistrationFormPage()
                 .typeFirstName(testData.firstName)
                 .typeLastName(testData.lastName)
                 .setGender(sex)
@@ -41,7 +42,8 @@ public class StudentRegistrationFormTests extends BaseTest {
     @DisplayName("Проверка заполнения и отправки только обязательных полей c именами на разных языках")
     void successOnlyRequiredFieldsSubmittingTestWithDifferentLanguagesTest(String firstName, String lastName) {
 
-        studentRegistrationFormPage.openStudentRegistrationFormPage()
+        studentRegistrationFormPage
+                .openStudentRegistrationFormPage()
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .setGender(testData.sex)
@@ -64,7 +66,8 @@ public class StudentRegistrationFormTests extends BaseTest {
     @Tag("REGRESS")
     @DisplayName("Проверка заполнения и отправки всех полей с разной длинной имени и фамилии")
     void successAllFieldSubmittingTest(String firstName, String lastName) {
-        studentRegistrationFormPage.openStudentRegistrationFormPage()
+        studentRegistrationFormPage
+                .openStudentRegistrationFormPage()
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .typeUserEmail(testData.userEmail)
@@ -97,12 +100,22 @@ public class StudentRegistrationFormTests extends BaseTest {
     @DisplayName("Проверка подсвечивания ошибкой обязательных полей")
     void highlightedErrorRequiredFieldTest() {
         // без заполнения полей сразу кликнем по кнопке Submit
-        studentRegistrationFormPage.openStudentRegistrationFormPage()
+        studentRegistrationFormPage
+                .openStudentRegistrationFormPage()
                 .clickSubmitButton()
                 .validErrorFirstName()
                 .validErrorLastName()
                 .validErrorUserNumber()
                 .validErrorGender();
+    }
+
+    @Test
+    @DisplayName("Специально ломаный тест")
+    void specialBrokenTest() {
+        studentRegistrationFormPage
+                .openStudentRegistrationFormPage()
+                .clickSubmitButton()
+                .resultRegistrationModal().shouldAppear();
     }
 
 }
