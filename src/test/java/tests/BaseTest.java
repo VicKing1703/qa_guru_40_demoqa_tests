@@ -26,8 +26,8 @@ public class BaseTest {
     static void setUp() {
 
         String browser = System.getProperty("browser", "chrome");
-        String browserSize = System.getProperty("browserSize");
-        String browserVersion = System.getProperty("browserVersion");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
+        String browserVersion = System.getProperty("browserVersion", "127");
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
         String baseUrl = System.getProperty("baseUrl");
@@ -53,7 +53,6 @@ public class BaseTest {
         ));
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://" + loginSelenoid + ":" + passwordSelenoid + "@" + urlSelenoid;
-
 //        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
     }
