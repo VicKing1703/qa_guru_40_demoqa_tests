@@ -24,12 +24,27 @@ public class BaseTest {
 
     @BeforeAll
     static void setUp() {
-        Configuration.browser = "chrome";
-//        Configuration.browserVersion = "144";
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+
+        String browser = System.getProperty("browser", "chrome");
+        String browserSize = System.getProperty("browserSize");
+        String browserVersion = System.getProperty("browserVersion");
+        boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+
+        String baseUrl = System.getProperty("baseUrl");
+
+        String loginSelenoid =  System.getProperty("loginSelenoid");
+        String passwordSelenoid =  System.getProperty("passwordSelenoid");
+        String urlSelenoid = System.getProperty("urlSelenoid");
+
+
+        Configuration.browser = browser;
+        Configuration.browserVersion = browserVersion;
+        Configuration.browserSize = browserSize;
+        Configuration.baseUrl = baseUrl;
+//        Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 40000; // увеличил для "прогрева" при первом старте, из-за возможных нюансов с ВПН
+        Configuration.headless = isHeadless;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -37,7 +52,9 @@ public class BaseTest {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://" + loginSelenoid + ":" + passwordSelenoid + "@" + urlSelenoid;
+
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
     }
 
