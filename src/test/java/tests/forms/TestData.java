@@ -1,4 +1,4 @@
-package tests;
+package tests.forms;
 
 import net.datafaker.Faker;
 
