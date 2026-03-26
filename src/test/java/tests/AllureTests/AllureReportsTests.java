@@ -25,6 +25,11 @@ public class AllureReportsTests {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
+    @AfterAll
+    static void afterAll() {
+        closeWebDriver();
+    }
+
     private static String REPOSITORY = "VicKing1703/qa_guru_40_demoqa_tests";
     private static String ISSUE = "First issues";
 
