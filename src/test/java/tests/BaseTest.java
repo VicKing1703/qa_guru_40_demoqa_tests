@@ -36,12 +36,10 @@ public class BaseTest {
         String passwordSelenoid =  System.getProperty("passwordSelenoid");
         String urlSelenoid = System.getProperty("urlSelenoid");
 
-
         Configuration.browser = browser;
         Configuration.browserVersion = browserVersion;
         Configuration.browserSize = browserSize;
         Configuration.baseUrl = baseUrl;
-//        Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.pageLoadTimeout = 40000; // увеличил для "прогрева" при первом старте, из-за возможных нюансов с ВПН
         Configuration.headless = isHeadless;
@@ -53,8 +51,6 @@ public class BaseTest {
         ));
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = "https://" + loginSelenoid + ":" + passwordSelenoid + "@" + urlSelenoid;
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-
     }
 
     @AfterEach
@@ -65,6 +61,5 @@ public class BaseTest {
         Attach.addVideo();
 
         closeWebDriver();
-
     }
 }
