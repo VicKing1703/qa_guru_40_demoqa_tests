@@ -1,11 +1,10 @@
 package tests.AllureTests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
@@ -16,15 +15,24 @@ import static org.openqa.selenium.By.linkText;
 @Tag("Allure")
 public class AllureReportsTests {
 
+    @BeforeAll
+    static void beforeAll() {
+        Configuration.baseUrl = "https://github.com";
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
     private static String REPOSITORY = "VicKing1703/qa_guru_40_demoqa_tests";
     private static String ISSUE = "First issues";
 
     @Test
     @DisplayName("Чистый Selenide (с Listener)")
     public void issueSearchSelenideTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
-        open("https://github.com");
+        open("/");
 
         $(".input-button").click();
         $(".QueryBuilder-Input").sendKeys(REPOSITORY);
@@ -38,10 +46,9 @@ public class AllureReportsTests {
     @Test
     @DisplayName("Лямбда шаги через step (name, () -> {})")
     public void issueSearchLambdaTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открываем главную страницу GitHub", () -> {
-            open("https://github.com");
+            open("/");
         });
         step("Через строку поиска ищем репозиторий '" + REPOSITORY + "'", () -> {
             $(".input-button").click();
@@ -64,7 +71,6 @@ public class AllureReportsTests {
     @DisplayName("Шаги с аннотацией @Step")
     public void issueSearchStepTest() {
         WebSteps step = new WebSteps();
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step.openMainPage();
         step.searchForRepository(REPOSITORY);
