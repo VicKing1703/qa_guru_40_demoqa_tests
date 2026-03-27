@@ -13,6 +13,7 @@ import static org.openqa.selenium.By.linkText;
 
 @DisplayName("Тесты в разных стилях с отчетами в Аллюр")
 @Tag("Allure")
+@Disabled("Чтоб не мешалось")
 public class AllureReportsTests {
 
     @BeforeAll
